@@ -116,6 +116,7 @@ export default function GuideLayout({ guide }: { guide: Guide }) {
           <p className="mt-2 text-stone-400">Certificado digital em nuvem para PJe, com controle de acessos e auditoria contínua.</p>
           <p className="mt-5 flex flex-wrap justify-center gap-3">
             <a href="/#download" className="btn-primary">Baixar ou solicitar acesso</a>
+            <a href="#contato-rodape" className="btn-secondary">Falar com o comercial</a>
             <a href="/#seguranca" className="btn-secondary">Ver segurança</a>
           </p>
         </section>

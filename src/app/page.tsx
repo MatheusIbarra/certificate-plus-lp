@@ -2,6 +2,7 @@ import { ArrowRight, Camera, Check, Download, Laptop, Mail, ShieldCheck, ShieldO
 import CopyButton from "@/components/CopyButton";
 import AuditPanel from "@/components/AuditPanel";
 import AppWindow from "@/components/AppWindow";
+import LeadForm from "@/components/LeadForm";
 import JsonLd from "@/components/JsonLd";
 import { AUDIT, COMPARE, FAQ, FEATURES, HERO, PRIVACY, ROLES, SECURITY, STEPS, SYSTEMS, WHY } from "@/content";
 import { getRelease } from "@/lib/release";
@@ -103,6 +104,7 @@ export default async function Home() {
             <p className="mt-5 max-w-xl text-base leading-relaxed text-stone-400 sm:mt-6 sm:text-lg">{HERO.subtitle}</p>
             <div className="mt-7 flex flex-wrap items-center gap-3 sm:mt-9">
               <a href="#download" className="btn-primary"><Download className="h-4 w-4" aria-hidden /> Baixar o app</a>
+              <a href="#contato" className="btn-secondary"><Mail className="h-4 w-4" aria-hidden /> Falar com o comercial</a>
               <a href="#seguranca" className="btn-secondary"><ShieldCheck className="h-4 w-4" aria-hidden /> Como protegemos</a>
             </div>
             <p className="mt-5 flex items-center gap-2 text-sm text-stone-500"><Check className="h-4 w-4 shrink-0 text-teal-400" aria-hidden /> {HERO.note}</p>
@@ -153,6 +155,11 @@ export default async function Home() {
             </table>
           </div>
           <p data-reveal className="mx-auto mt-6 max-w-2xl text-center text-sm text-stone-500">{COMPARE.note}</p>
+          <div data-reveal id="contato-certificados" className="card mx-auto mt-10 max-w-3xl p-5 sm:p-6">
+            <h3 className="text-lg font-semibold text-stone-50">Quantos certificados a sua equipe usa?</h3>
+            <p className="mb-4 mt-1 text-sm text-stone-400">Deixe seu contato e o time comercial fala com você.</p>
+            <LeadForm source="certificados" wide />
+          </div>
           <p data-reveal className="mx-auto mt-3 max-w-2xl text-center text-sm">
             <a href="/certificado-a1-a3-ou-nuvem" className="text-teal-300 hover:text-teal-200">Certificado A1, A3 ou em nuvem: qual escolher</a>
             <span className="text-stone-600" aria-hidden> · </span>
@@ -336,10 +343,8 @@ export default async function Home() {
             <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_80%_at_50%_0%,rgba(20,184,166,0.18),transparent)]" />
             <h2 id="cta-title" className="relative text-2xl font-semibold tracking-tight text-stone-50 sm:text-3xl lg:text-4xl">Pronto para tirar o certificado do pen drive?</h2>
             <p className="relative mt-3 text-stone-400">Fale com a gente e coloque a sua equipe para trabalhar com acesso controlado e auditável.</p>
-            <div className="relative mt-8 flex flex-wrap justify-center gap-3">
-              <a href={mailto} className="btn-primary"><Mail className="h-4 w-4" aria-hidden /> Solicitar acesso</a>
-              <a href="#seguranca" className="btn-secondary">Ver segurança</a>
-            </div>
+            <div id="contato" className="relative mx-auto mt-8 max-w-2xl scroll-mt-24"><LeadForm source="cta-principal" wide /></div>
+            <p className="relative mt-6"><a href="#seguranca" className="btn-secondary">Ver segurança</a></p>
           </div>
         </div>
       </section>

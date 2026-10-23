@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-// Cabeçalhos de segurança. O site é estático e sem formulários: nada de frames, formulários externos ou conexões de saída.
+// Cabeçalhos de segurança. O único envio é o formulário de contato, para /api/leads no próprio site: nada de frames, formulários externos ou conexões de saída no navegador.
 const CSP = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline'", // o runtime do framework injeta scripts inline; sem origens externas

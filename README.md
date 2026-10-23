@@ -1,6 +1,6 @@
 # Certificate Plus: site
 
-Landing page do aplicativo desktop (`certificate-plus-electron`). Mesmo design do `resolve-hub/tunnel` (Vinext, Tailwind 3, stone + teal, Geist), em pt-BR e sem backend.
+Landing page do aplicativo desktop (`certificate-plus-electron`). Mesmo design do `resolve-hub/tunnel` (Vinext, Tailwind 3, stone + teal, Geist), em pt-BR. O único backend é o formulário de contato (`/api/leads`), que repassa à `certificate-plus-api`.
 
 ```bash
 npm install
@@ -13,7 +13,8 @@ npm run typecheck && npm run build
 |---|---|
 | `SITE_URL` | URL pública (canonical, sitemap, Open Graph) |
 | `UPDATES_BASE_URL` | Pasta pública com `latest.json` (a mesma do auto-update do app). Os botões de download e a versão vêm dele; sem ele, aparece "Solicitar acesso" |
-| `CONTACT_EMAIL` | E-mail do botão "Solicitar acesso" |
+| `CONTACT_EMAIL` | E-mail de contato (rodapé e dados estruturados) |
+| `LEADS_API_URL` / `LEADS_API_KEY` | API e service key (`public.leads.write`) para onde o formulário comercial envia os leads |
 
 ## Regra de conteúdo
 
@@ -23,7 +24,7 @@ Este site é público. **Não descreva o funcionamento interno** (túneis, proxy
 
 - Cabeçalhos em `src/middleware.ts`: CSP restritiva (sem origens externas, sem frames), HSTS, nosniff, Referrer-Policy, Permissions-Policy. O `eval` bloqueado que aparece no console em `dev` é do React em desenvolvimento, não ocorre em produção.
 - `src/lib/release.ts` trata `latest.json` como dado externo: só gera link `https` dentro da base configurada, com versão e SHA-256 válidos; falha = botão de pedir acesso.
-- Sem formulários, cookies ou scripts de terceiros.
+- Um formulário (`src/components/LeadForm.tsx` → `src/app/api/leads/route.ts`): honeypot, validação no servidor, checagem de `Origin` e rate limit por IP (5 por 10 min na instância, mais o limite firme da API). A origem (UTMs, referrer, página de entrada) fica em `sessionStorage`; sem cookies nem scripts de terceiros.
 
 ## Pendências
 
