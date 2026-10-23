@@ -153,6 +153,13 @@ export default async function Home() {
             </table>
           </div>
           <p data-reveal className="mx-auto mt-6 max-w-2xl text-center text-sm text-stone-500">{COMPARE.note}</p>
+          <p data-reveal className="mx-auto mt-3 max-w-2xl text-center text-sm">
+            <a href="/certificado-a1-a3-ou-nuvem" className="text-teal-300 hover:text-teal-200">Certificado A1, A3 ou em nuvem: qual escolher</a>
+            <span className="text-stone-600" aria-hidden> · </span>
+            <a href="/certificado-digital-em-nuvem" className="text-teal-300 hover:text-teal-200">O que é certificado digital em nuvem</a>
+            <span className="text-stone-600" aria-hidden> · </span>
+            <a href="/pje-sem-token" className="text-teal-300 hover:text-teal-200">Como acessar o PJe sem token</a>
+          </p>
         </div>
       </section>
 
