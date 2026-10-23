@@ -4,14 +4,14 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 import Motion from "@/components/Motion";
 import Header from "@/components/Header";
-import { GOOGLE_VERIFICATION, INDEXABLE, SITE_NAME, SITE_URL } from "@/lib/site";
+import { GOOGLE_VERIFICATION, INDEXABLE, PAGE_DESCRIPTION, PAGE_TITLE, SITE_NAME, SITE_URL } from "@/lib/site";
 
 const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
 
-const TITLE = "Certificate Plus: certificado digital para tribunais PJe";
-const DESCRIPTION = "Use PJe e tribunais com certificado digital sem instalá-lo no PC. Auditoria contínua, print em tempo real e revogação de acesso na hora. macOS e Windows.";
-const OG_IMAGE = { url: "/og-image.png", width: 1200, height: 630, alt: "Certificate Plus: tribunais PJe com certificado digital na nuvem" };
+const TITLE = PAGE_TITLE;
+const DESCRIPTION = PAGE_DESCRIPTION;
+const OG_IMAGE = { url: "/og-image.png", width: 1200, height: 630, alt: "Certificate Plus: certificado digital em nuvem para tribunais PJe" };
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   creator: SITE_NAME,
   publisher: SITE_NAME,
   category: "business",
-  keywords: ["certificado digital", "certificado digital na nuvem", "PJe", "tribunais", "TRT", "TJ", "TRF", "TRE", "assinatura digital", "advocacia", "escritório de advocacia", "token A3", "peticionamento"],
+  keywords: ["certificado digital", "certificado digital em nuvem", "certificado digital na nuvem", "certificado digital para advogados", "PJe sem token", "PJe", "tribunais", "TRT", "TJ", "TRF", "TRE", "assinatura digital", "advocacia", "escritório de advocacia", "token A3", "peticionamento"],
   alternates: { canonical: "/", languages: { "pt-BR": "/", "x-default": "/" } },
   formatDetection: { telephone: false, email: false, address: false },
   icons: {

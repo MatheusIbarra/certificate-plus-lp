@@ -3,9 +3,9 @@ import CopyButton from "@/components/CopyButton";
 import AuditPanel from "@/components/AuditPanel";
 import AppWindow from "@/components/AppWindow";
 import JsonLd from "@/components/JsonLd";
-import { AUDIT, FAQ, FEATURES, HERO, PRIVACY, ROLES, SECURITY, STEPS, SYSTEMS, WHY } from "@/content";
+import { AUDIT, COMPARE, FAQ, FEATURES, HERO, PRIVACY, ROLES, SECURITY, STEPS, SYSTEMS, WHY } from "@/content";
 import { getRelease } from "@/lib/release";
-import { CONTACT_EMAIL, SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/site";
+import { CONTACT_EMAIL, PAGE_DESCRIPTION, PAGE_TITLE, SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/site";
 
 export const revalidate = 300;
 
@@ -74,7 +74,9 @@ export default async function Home() {
       "@type": "WebPage",
       "@id": `${SITE_URL}/#webpage`,
       url: SITE_URL,
-      name: "Certificate Plus: certificado digital para tribunais PJe",
+      name: PAGE_TITLE,
+      description: PAGE_DESCRIPTION,
+      ...(release?.publishedAt ? { dateModified: release.publishedAt } : {}),
       inLanguage: "pt-BR",
       isPartOf: { "@id": `${SITE_URL}/#website` },
       about: { "@id": `${SITE_URL}/#app` },
@@ -121,6 +123,36 @@ export default async function Home() {
               </li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      <section id="comparativo" aria-labelledby="compare-title" className="border-t border-stone-800/80 py-14 sm:py-20 lg:py-24">
+        <div className="page-container">
+          <SectionHeader id="compare-title" title={COMPARE.title} subtitle={COMPARE.subtitle} />
+          <div data-reveal className="mt-10 overflow-x-auto rounded-xl border border-stone-800 bg-stone-900/40 sm:mt-14">
+            <table className="w-full min-w-[40rem] border-collapse text-left text-sm">
+              <caption className="sr-only">Comparativo entre certificado A1, certificado A3 e Certificate Plus</caption>
+              <thead>
+                <tr className="border-b border-stone-800 bg-stone-900/70">
+                  <td className="px-5 py-4" />
+                  {COMPARE.columns.map((c, i) => (
+                    <th key={c} scope="col" className={`px-5 py-4 font-semibold ${i === 2 ? "text-teal-300" : "text-stone-100"}`}>{c}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-stone-800">
+                {COMPARE.rows.map(([label, ...cells]) => (
+                  <tr key={label}>
+                    <th scope="row" className="px-5 py-4 font-medium text-stone-100">{label}</th>
+                    {cells.map((cell, i) => (
+                      <td key={i} className={`px-5 py-4 leading-relaxed ${i === 2 ? "text-stone-200" : "text-stone-400"}`}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p data-reveal className="mx-auto mt-6 max-w-2xl text-center text-sm text-stone-500">{COMPARE.note}</p>
         </div>
       </section>
 

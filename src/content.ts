@@ -3,6 +3,7 @@ import { Eye, FileSignature, Gauge, KeyRound, Layers, LifeBuoy, LockKeyhole, Ref
 // Texto público. Regra de negócio: descrevemos o que o usuário vê e controla, nunca como a conexão funciona por dentro.
 
 export const NAV = [
+  { href: "#comparativo", label: "Comparativo" },
   { href: "#recursos", label: "Recursos" },
   { href: "#auditoria", label: "Auditoria" },
   { href: "#seguranca", label: "Segurança" },
@@ -13,7 +14,7 @@ export const NAV = [
 
 export const HERO = {
   badge: "Aplicativo desktop para macOS e Windows",
-  title: "Tribunais PJe com certificado digital,",
+  title: "Certificado digital em nuvem para tribunais PJe,",
   highlight: "sem instalar o certificado no computador.",
   subtitle:
     "O Certificate Plus abre PJe, TRTs, TJs, TRFs, TREs e Justiça Federal já autenticados. O login, o segundo fator e a assinatura acontecem sozinhos, e quem administra o certificado decide quem pode usar.",
@@ -91,7 +92,24 @@ export const PRIVACY = {
   ] as [string, string][],
 };
 
+export const COMPARE = {
+  title: "Certificado digital em nuvem, A1 ou A3: o que muda no dia a dia",
+  subtitle: "Comparativo de como cada forma de uso do certificado afeta mobilidade, controle e rastreabilidade.",
+  columns: ["Arquivo no computador (A1)", "Token ou cartão (A3)", "Certificate Plus"],
+  rows: [
+    ["Onde fica o certificado", "Arquivo instalado em cada computador", "Mídia física ligada ao computador", "Sob custódia da plataforma; nada é instalado"],
+    ["Usar em outro computador", "Copiar o arquivo e a senha", "Levar o token ou o cartão", "Entrar com a sua conta no app"],
+    ["Quem pode usar", "Quem tiver o arquivo e a senha", "Quem estiver com a mídia e o PIN", "Só quem o dono do certificado liberou"],
+    ["Rastro de uso", "Normalmente sem registro de quem usou", "Normalmente sem registro de quem usou", "Trilha de atividade, print em tempo real e revogação imediata"],
+  ] as string[][],
+  note: "O Certificate Plus não é um novo tipo de certificado: é o app que dá acesso controlado ao certificado digital da sua organização.",
+};
+
+// TODO: confirmar informação com o time: tipos de certificado aceitos (A1/A3, e-CPF/e-CNPJ) e se a empresa emite certificados. Só então criar FAQ/seção sobre isso.
 export const FAQ = [
+  { q: "O que é certificado digital em nuvem?", a: "É usar o certificado digital sem que ele fique instalado no seu computador ou em um token. No Certificate Plus, o certificado fica sob custódia da plataforma e é usado apenas em sessões autorizadas, por conta e por permissão." },
+  { q: "Qual a diferença entre certificado A1, A3 e o uso em nuvem?", a: "O A1 é um arquivo guardado no computador e o A3 fica em token ou cartão: nos dois, o certificado precisa estar com quem usa. No uso em nuvem, ele permanece sob custódia da plataforma e o dono controla quem acessa. O Certificate Plus não é um novo tipo de certificado, e sim a forma de usar o da sua organização." },
+  { q: "Posso usar o mesmo certificado digital em vários computadores?", a: "Sim, se o dono do certificado liberar o seu acesso. Basta entrar com a sua conta no app, em macOS ou Windows. Não há arquivo nem token para levar de um computador a outro." },
   { q: "Preciso instalar o certificado digital no meu computador?", a: "Não. O certificado fica sob custódia da plataforma e é usado apenas durante as sessões autorizadas para você." },
   { q: "Como consigo uma conta?", a: "As contas são criadas pelo administrador da sua organização. Se você é responsável por um escritório ou área, fale conosco para contratar." },
   { q: "Quais tribunais e sistemas funcionam?", a: "Mais de 180 tribunais na versão atual: PJe de TRTs, TJs, TRFs, TREs e Justiça Federal, além do PJe Cloud. O catálogo cresce sem exigir nova versão do app." },
