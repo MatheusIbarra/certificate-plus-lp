@@ -27,6 +27,23 @@ export function LeadButton({ source, className, children }: { source: string; cl
 
 const TOAST_MS = 7000;
 
+const BOX = "fixed inset-auto bottom-4 right-4 m-0 flex w-[calc(100%-2rem)] max-w-sm flex-col gap-2 border-0 bg-transparent p-0 text-stone-100 sm:bottom-6 sm:right-6 empty:hidden";
+
+function ToastList({ toasts, dismiss }: { toasts: Toast[]; dismiss: (id: number) => void }) {
+  return (
+    <>
+      {toasts.map((t) => (
+        <div key={t.id} role={t.kind === "error" ? "alert" : "status"}
+          className={`flex items-start gap-3 rounded-lg border bg-stone-900 px-4 py-3 text-sm shadow-xl ${t.kind === "success" ? "border-teal-500/40" : "border-red-500/40"}`}>
+          {t.kind === "success" ? <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-teal-400" aria-hidden /> : <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-400" aria-hidden />}
+          <p className="flex-1">{t.text}</p>
+          <button type="button" aria-label="Dispensar" onClick={() => dismiss(t.id)} className="text-stone-500 hover:text-stone-200"><X className="h-4 w-4" aria-hidden /></button>
+        </div>
+      ))}
+    </>
+  );
+}
+
 export function LeadProvider({ children }: { children: ReactNode }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const [source, setSource] = useState("site");
@@ -39,6 +56,8 @@ export function LeadProvider({ children }: { children: ReactNode }) {
     setToasts((t) => [...t.slice(-2), { id, kind, text }]);
     setTimeout(() => setToasts((t) => t.filter((x) => x.id !== id)), TOAST_MS);
   }, []);
+
+  const dismiss = useCallback((id: number) => setToasts((t) => t.filter((x) => x.id !== id)), []);
 
   const open = useCallback((s: string) => {
     setSource(s);
@@ -86,18 +105,11 @@ export function LeadProvider({ children }: { children: ReactNode }) {
             </div>
           )}
         </div>
+        {isOpen && <div className={`${BOX} z-50`}><ToastList toasts={toasts} dismiss={dismiss} /></div>}
       </dialog>
-      {/* Toasts: ficam acima do modal (top layer) porque o popover é promovido junto. */}
-      <div ref={(el) => { if (el && !el.matches(":popover-open")) try { el.showPopover(); } catch { /* sem suporte: fica no fluxo normal */ } }} popover="manual"
-        className="fixed inset-auto bottom-4 right-4 m-0 flex w-[calc(100%-2rem)] max-w-sm flex-col gap-2 border-0 bg-transparent p-0 text-stone-100 sm:bottom-6 sm:right-6" aria-live="polite">
-        {toasts.map((t) => (
-          <div key={t.id} role={t.kind === "error" ? "alert" : "status"}
-            className={`flex items-start gap-3 rounded-lg border px-4 py-3 text-sm shadow-xl ${t.kind === "success" ? "border-teal-500/40 bg-stone-900" : "border-red-500/40 bg-stone-900"}`}>
-            {t.kind === "success" ? <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-teal-400" aria-hidden /> : <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-400" aria-hidden />}
-            <p className="flex-1">{t.text}</p>
-            <button type="button" aria-label="Dispensar" onClick={() => setToasts((x) => x.filter((y) => y.id !== t.id))} className="text-stone-500 hover:text-stone-200"><X className="h-4 w-4" aria-hidden /></button>
-          </div>
-        ))}
+      {/* Com o modal aberto, ele deixa o resto da página inerte e cobre tudo: o toast vive dentro dele. Fechado, vai para a camada superior. */}
+      <div ref={(el) => { if (el && !el.matches(":popover-open")) try { el.showPopover(); } catch { /* sem suporte: fica no fluxo normal */ } }} popover="manual" className={BOX}>
+        {!isOpen && <ToastList toasts={toasts} dismiss={dismiss} />}
       </div>
     </LeadCtx.Provider>
   );
