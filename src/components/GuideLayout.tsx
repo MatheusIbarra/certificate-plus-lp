@@ -1,4 +1,5 @@
 import { ArrowRight, Check } from "lucide-react";
+import { LeadButton } from "@/components/LeadModal";
 import JsonLd from "@/components/JsonLd";
 import { COMPARE } from "@/content";
 import { GUIDES, type Guide } from "@/guides";
@@ -116,7 +117,7 @@ export default function GuideLayout({ guide }: { guide: Guide }) {
           <p className="mt-2 text-stone-400">Certificado digital em nuvem para PJe, com controle de acessos e auditoria contínua.</p>
           <p className="mt-5 flex flex-wrap justify-center gap-3">
             <a href="/#download" className="btn-primary">Baixar ou solicitar acesso</a>
-            <a href="#contato-rodape" className="btn-secondary">Falar com o comercial</a>
+            <LeadButton source="guia" className="btn-secondary">Falar com o comercial</LeadButton>
             <a href="/#seguranca" className="btn-secondary">Ver segurança</a>
           </p>
         </section>

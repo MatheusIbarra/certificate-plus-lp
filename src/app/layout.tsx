@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
+import { LeadProvider } from "@/components/LeadModal";
 import Motion from "@/components/Motion";
 import Header from "@/components/Header";
 import { GOOGLE_VERIFICATION, INDEXABLE, PAGE_DESCRIPTION, PAGE_TITLE, SITE_NAME, SITE_URL } from "@/lib/site";
@@ -54,9 +55,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Pular para o conteúdo
         </a>
         <Motion />
-        <Header />
-        <main id="main">{children}</main>
-        <Footer />
+        <LeadProvider>
+          <Header />
+          <main id="main">{children}</main>
+          <Footer />
+        </LeadProvider>
       </body>
     </html>
   );

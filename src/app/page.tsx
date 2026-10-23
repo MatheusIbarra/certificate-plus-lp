@@ -2,7 +2,7 @@ import { ArrowRight, Camera, Check, Download, Laptop, Mail, ShieldCheck, ShieldO
 import CopyButton from "@/components/CopyButton";
 import AuditPanel from "@/components/AuditPanel";
 import AppWindow from "@/components/AppWindow";
-import LeadForm from "@/components/LeadForm";
+import { LeadButton } from "@/components/LeadModal";
 import JsonLd from "@/components/JsonLd";
 import { AUDIT, COMPARE, FAQ, FEATURES, HERO, PRIVACY, ROLES, SECURITY, STEPS, SYSTEMS, WHY } from "@/content";
 import { getRelease } from "@/lib/release";
@@ -85,7 +85,6 @@ export default async function Home() {
     },
     { "@context": "https://schema.org", "@type": "FAQPage", inLanguage: "pt-BR", mainEntity: FAQ.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) },
   ];
-  const mailto = CONTACT_EMAIL ? `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Quero conhecer o Certificate Plus")}` : "#download";
 
   return (
     <>
@@ -104,7 +103,7 @@ export default async function Home() {
             <p className="mt-5 max-w-xl text-base leading-relaxed text-stone-400 sm:mt-6 sm:text-lg">{HERO.subtitle}</p>
             <div className="mt-7 flex flex-wrap items-center gap-3 sm:mt-9">
               <a href="#download" className="btn-primary"><Download className="h-4 w-4" aria-hidden /> Baixar o app</a>
-              <a href="#contato" className="btn-secondary"><Mail className="h-4 w-4" aria-hidden /> Falar com o comercial</a>
+              <LeadButton source="hero" className="btn-secondary"><Mail className="h-4 w-4" aria-hidden /> Falar com o comercial</LeadButton>
               <a href="#seguranca" className="btn-secondary"><ShieldCheck className="h-4 w-4" aria-hidden /> Como protegemos</a>
             </div>
             <p className="mt-5 flex items-center gap-2 text-sm text-stone-500"><Check className="h-4 w-4 shrink-0 text-teal-400" aria-hidden /> {HERO.note}</p>
@@ -155,10 +154,12 @@ export default async function Home() {
             </table>
           </div>
           <p data-reveal className="mx-auto mt-6 max-w-2xl text-center text-sm text-stone-500">{COMPARE.note}</p>
-          <div data-reveal id="contato-certificados" className="card mx-auto mt-10 max-w-3xl p-5 sm:p-6">
-            <h3 className="text-lg font-semibold text-stone-50">Quantos certificados a sua equipe usa?</h3>
-            <p className="mb-4 mt-1 text-sm text-stone-400">Deixe seu contato e o time comercial fala com você.</p>
-            <LeadForm source="certificados" wide />
+          <div data-reveal className="card mx-auto mt-10 flex max-w-3xl flex-col items-center gap-4 p-5 text-center sm:flex-row sm:justify-between sm:p-6 sm:text-left">
+            <div>
+              <h3 className="text-lg font-semibold text-stone-50">Quantos certificados a sua equipe usa?</h3>
+              <p className="mt-1 text-sm text-stone-400">Deixe seu contato e o time comercial fala com você.</p>
+            </div>
+            <LeadButton source="certificados" className="btn-primary shrink-0"><Mail className="h-4 w-4" aria-hidden /> Solicitar acesso</LeadButton>
           </div>
           <p data-reveal className="mx-auto mt-3 max-w-2xl text-center text-sm">
             <a href="/certificado-a1-a3-ou-nuvem" className="text-teal-300 hover:text-teal-200">Certificado A1, A3 ou em nuvem: qual escolher</a>
@@ -313,7 +314,7 @@ export default async function Home() {
             </ul>
           ) : (
             <p className="mt-10 text-center">
-              <a href={mailto} className="btn-primary"><Mail className="h-4 w-4" aria-hidden /> Solicitar acesso</a>
+              <LeadButton source="download" className="btn-primary"><Mail className="h-4 w-4" aria-hidden /> Solicitar acesso</LeadButton>
             </p>
           )}
           <p className="mt-6 text-center text-sm text-stone-500">Baixe apenas por esta página. Em Macs com chip M1, M2 ou M3 use a versão Apple Silicon.</p>
@@ -343,8 +344,10 @@ export default async function Home() {
             <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_80%_at_50%_0%,rgba(20,184,166,0.18),transparent)]" />
             <h2 id="cta-title" className="relative text-2xl font-semibold tracking-tight text-stone-50 sm:text-3xl lg:text-4xl">Pronto para tirar o certificado do pen drive?</h2>
             <p className="relative mt-3 text-stone-400">Fale com a gente e coloque a sua equipe para trabalhar com acesso controlado e auditável.</p>
-            <div id="contato" className="relative mx-auto mt-8 max-w-2xl scroll-mt-24"><LeadForm source="cta-principal" wide /></div>
-            <p className="relative mt-6"><a href="#seguranca" className="btn-secondary">Ver segurança</a></p>
+            <div className="relative mt-8 flex flex-wrap justify-center gap-3">
+              <LeadButton source="cta-principal" className="btn-primary"><Mail className="h-4 w-4" aria-hidden /> Solicitar acesso</LeadButton>
+              <a href="#seguranca" className="btn-secondary">Ver segurança</a>
+            </div>
           </div>
         </div>
       </section>

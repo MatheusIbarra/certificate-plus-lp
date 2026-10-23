@@ -1,6 +1,6 @@
 # Certificate Plus: site
 
-Landing page do aplicativo desktop (`certificate-plus-electron`). Mesmo design do `resolve-hub/tunnel` (Vinext, Tailwind 3, stone + teal, Geist), em pt-BR. O único backend é o formulário de contato (`/api/leads`), que repassa à `certificate-plus-api`.
+Landing page do aplicativo desktop (`certificate-plus-electron`). Mesmo design do `resolve-hub/tunnel` (Vinext, Tailwind 3, stone + teal, Geist), em pt-BR. O único backend é o formulário de contato (`src/app/actions/leads.ts`), via server action, que chama a `certificate-plus-api`.
 
 ```bash
 npm install
@@ -24,7 +24,7 @@ Este site é público. **Não descreva o funcionamento interno** (túneis, proxy
 
 - Cabeçalhos em `src/middleware.ts`: CSP restritiva (sem origens externas, sem frames), HSTS, nosniff, Referrer-Policy, Permissions-Policy. O `eval` bloqueado que aparece no console em `dev` é do React em desenvolvimento, não ocorre em produção.
 - `src/lib/release.ts` trata `latest.json` como dado externo: só gera link `https` dentro da base configurada, com versão e SHA-256 válidos; falha = botão de pedir acesso.
-- Um formulário (`src/components/LeadForm.tsx` → `src/app/api/leads/route.ts`): honeypot, validação no servidor, checagem de `Origin` e rate limit por IP (5 por 10 min na instância, mais o limite firme da API). A origem (UTMs, referrer, página de entrada) fica em `sessionStorage`; sem cookies nem scripts de terceiros.
+- Um formulário de contato, aberto em modal pelos botões "Solicitar acesso" / "Falar com o comercial" (`LeadModal.tsx` + `LeadForm.tsx`, com toasts → server action `src/app/actions/leads.ts`): honeypot, validação no servidor, checagem de `Origin` do próprio framework e rate limit por IP (5 por 10 min na instância, mais o limite firme da API). A origem (UTMs, referrer, página de entrada) fica em `sessionStorage`; sem cookies nem scripts de terceiros.
 
 ## Pendências
 

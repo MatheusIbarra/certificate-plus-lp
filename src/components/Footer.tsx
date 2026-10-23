@@ -1,5 +1,5 @@
 import Logo from "./Logo";
-import LeadForm from "./LeadForm";
+import { LeadButton } from "./LeadModal";
 import { NAV } from "@/content";
 import { GUIDES } from "@/guides";
 import { CONTACT_EMAIL } from "@/lib/site";
@@ -31,11 +31,8 @@ export default function Footer() {
           <p className="mt-3 text-sm text-stone-500">
             {CONTACT_EMAIL ? <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-stone-200">{CONTACT_EMAIL}</a> : "Fale com o administrador da sua organização."}
           </p>
+          <LeadButton source="rodape" className="btn-secondary mt-4">Falar com o time comercial</LeadButton>
         </div>
-      </div>
-      <div id="contato-rodape" className="page-container mt-10 scroll-mt-24 border-t border-stone-800/80 pt-8">
-        <h2 className="text-sm font-semibold text-stone-200">Fale com o time comercial</h2>
-        <div className="mt-4 max-w-3xl"><LeadForm source="rodape" wide /></div>
       </div>
       <div className="page-container mt-10 border-t border-stone-800/80 pt-6 text-xs text-stone-600">
         <p>© {new Date().getFullYear()} Certificate Plus. Todos os direitos reservados.</p>

@@ -1,5 +1,6 @@
 import { Menu } from "lucide-react";
 import Logo from "./Logo";
+import { LeadButton } from "./LeadModal";
 import { NAV } from "@/content";
 
 export default function Header() {
@@ -13,7 +14,8 @@ export default function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <a href="/#download" className="btn-primary !px-3 !py-2 sm:!px-4">Baixar o app</a>
+          <LeadButton source="header" className="btn-secondary hidden whitespace-nowrap !px-3 !py-2 xl:inline-flex xl:!px-4">Falar com o comercial</LeadButton>
+          <a href="/#download" className="btn-primary whitespace-nowrap !px-3 !py-2 sm:!px-4">Baixar o app</a>
           <details className="relative lg:hidden">
             <summary aria-label="Menu" className="flex cursor-pointer list-none items-center rounded-md p-2 text-stone-300 hover:text-stone-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 [&::-webkit-details-marker]:hidden">
               <Menu className="h-5 w-5" aria-hidden />

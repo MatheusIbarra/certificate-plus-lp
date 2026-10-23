@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import { CheckCircle2, Loader2, Send } from "lucide-react";
+import { Loader2, Send } from "lucide-react";
+import { submitLead } from "@/app/actions/leads";
 import { CERT_TYPES, UTM_KEYS, maskPhone, validateLead, type Attribution, type LeadErrors, type LeadField } from "@/lib/leads";
 
 const STORE_KEY = "cp_attribution";
-const SENT = "Recebemos seu contato. Nosso time entrará em contato em breve.";
 
 /** Primeira origem da sessão: UTMs, referrer externo e página de entrada. Sobrevive à navegação entre páginas. */
 function captureAttribution(): Attribution {
@@ -26,16 +26,15 @@ function captureAttribution(): Attribution {
   return a;
 }
 
-const inputCls = "w-full rounded-md border border-stone-700 bg-stone-900 px-3 py-2.5 text-sm text-stone-100 placeholder:text-stone-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 aria-[invalid=true]:border-red-400";
+const inputCls = "w-full rounded-md border border-stone-700 bg-stone-900 px-3 py-2.5 text-base text-stone-100 sm:text-sm placeholder:text-stone-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 aria-[invalid=true]:border-red-400";
 
-export default function LeadForm({ source, id, defaultType = "", wide = false }: { source: string; id?: string; defaultType?: string; wide?: boolean }) {
+export default function LeadForm({ source, onSent, onError }: { source: string; onSent: () => void; onError: (message: string) => void }) {
   const uid = useId();
   const attribution = useRef<Attribution>({});
-  const [v, setV] = useState({ name: "", email: "", phone: "", quantity: "", certificateType: defaultType, company: "", website: "" });
+  const [v, setV] = useState({ name: "", email: "", phone: "", quantity: "", certificateType: "", company: "", website: "" });
   const [errors, setErrors] = useState<LeadErrors>({});
-  const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
-  const [message, setMessage] = useState("");
-
+  const [state, setState] = useState<"idle" | "sending" | "error">("idle");
+  
   useEffect(() => { attribution.current = captureAttribution(); }, []);
 
   const set = (k: keyof typeof v) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -51,37 +50,25 @@ export default function LeadForm({ source, id, defaultType = "", wide = false }:
     setErrors(found);
     if (Object.keys(found).length) {
       setState("idle");
-      setMessage("");
       requestAnimationFrame(() => document.getElementById(`${uid}-${Object.keys(found)[0]}`)?.focus());
       return;
     }
     setState("sending");
+    let failed = "";
     try {
-      const res = await fetch("/api/leads", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...v, ...attribution.current, source }),
-      });
-      if (res.status === 201) return setState("sent");
-      const data = (await res.json().catch(() => ({}))) as { message?: string; fields?: LeadErrors };
-      if (data.fields) setErrors(data.fields);
-      setMessage(data.message ?? "Não foi possível enviar agora. Tente novamente em instantes.");
+      const res = await submitLead({ ...v, ...attribution.current, source });
+      if (res.ok) return onSent();
+      if (res.fields) setErrors(res.fields);
+      failed = res.message;
     } catch {
-      setMessage("Sem conexão. Verifique a internet e tente novamente.");
+      failed = "Sem conexão. Verifique a internet e tente novamente.";
     }
     setState("error");
+    onError(failed);
   }
 
-  if (state === "sent")
-    return (
-      <div id={id} role="status" className="flex items-start gap-3 rounded-lg border border-teal-500/30 bg-teal-500/10 p-5 text-left">
-        <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-teal-400" aria-hidden />
-        <p className="text-stone-100">{SENT}</p>
-      </div>
-    );
-
-  const field = (k: LeadField, label: string, input: React.ReactNode) => (
-    <div>
+  const field = (k: LeadField, label: string, input: React.ReactNode, span = false) => (
+    <div className={span ? "sm:col-span-2" : undefined}>
       <label htmlFor={`${uid}-${k}`} className="mb-1 block text-sm text-stone-300">{label}</label>
       {input}
       {errors[k] && <p id={`${uid}-${k}-err`} className="mt-1 text-xs text-red-400">{errors[k]}</p>}
@@ -90,10 +77,10 @@ export default function LeadForm({ source, id, defaultType = "", wide = false }:
   const a11y = (k: LeadField) => ({ id: `${uid}-${k}`, "aria-invalid": !!errors[k], "aria-describedby": errors[k] ? `${uid}-${k}-err` : undefined });
 
   return (
-    <form id={id} onSubmit={submit} noValidate className="text-left" aria-label="Falar com o time comercial">
-      <div className={`grid gap-3 ${wide ? "sm:grid-cols-2" : ""}`}>
-        {field("name", "Nome completo *", <input {...a11y("name")} className={inputCls} autoComplete="name" required value={v.name} onChange={set("name")} />)}
-        {field("email", "E-mail *", <input {...a11y("email")} className={inputCls} type="email" autoComplete="email" required value={v.email} onChange={set("email")} />)}
+    <form onSubmit={submit} noValidate className="text-left" aria-label="Falar com o time comercial">
+      <div className="grid gap-3 sm:grid-cols-2">
+        {field("name", "Nome completo *", <input {...a11y("name")} className={inputCls} autoComplete="name" autoFocus required value={v.name} onChange={set("name")} />, true)}
+        {field("email", "E-mail *", <input {...a11y("email")} className={inputCls} type="email" autoComplete="email" required value={v.email} onChange={set("email")} />, true)}
         {field("phone", "Telefone / WhatsApp *", <input {...a11y("phone")} className={inputCls} type="tel" inputMode="tel" autoComplete="tel" placeholder="(11) 98765-4321" required value={v.phone} onChange={set("phone")} />)}
         {field("quantity", "Quantos certificados? *", <input {...a11y("quantity")} className={inputCls} inputMode="numeric" placeholder="Ex.: 5" required value={v.quantity} onChange={set("quantity")} />)}
         {field("certificateType", "Tipo de certificado (opcional)", (
@@ -111,8 +98,7 @@ export default function LeadForm({ source, id, defaultType = "", wide = false }:
       <div aria-hidden className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
         <label>Site<input tabIndex={-1} autoComplete="off" value={v.website} onChange={set("website")} /></label>
       </div>
-      <div aria-live="polite">{state === "error" && <p role="alert" className="mt-3 text-sm text-red-400">{message}</p>}</div>
-      <button type="submit" disabled={state === "sending"} className="btn-primary mt-4 w-full sm:w-auto">
+            <button type="submit" disabled={state === "sending"} className="btn-primary mt-5 w-full">
         {state === "sending" ? <><Loader2 className="h-4 w-4 animate-spin" aria-hidden /> Enviando…</> : <><Send className="h-4 w-4" aria-hidden /> Quero ser contatado</>}
       </button>
       <p className="mt-3 text-xs text-stone-500">Usamos seus dados apenas para retornar este contato.</p>
