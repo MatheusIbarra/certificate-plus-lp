@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .page-container {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-medium transition-all duration-150 enabled:active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-teal-500 text-stone-950 enabled:hover:bg-teal-400;
+  }
+  .btn-secondary {
+    @apply btn border border-stone-700 bg-stone-900 text-stone-100 enabled:hover:bg-stone-800;
+  }
+  .badge-tag {
+    @apply inline-flex items-center rounded-md border border-teal-500/30 bg-teal-500/10 px-2 py-0.5 text-xs font-medium text-teal-300;
+  }
+  .card {
+    @apply rounded-lg border border-stone-800 bg-stone-900/60;
+  }
+}
+
+/* Movimento. Sem JS o conteúdo fica visível; com JS (classe .js, posta antes da pintura) ele entra ao rolar. */
+@layer components {
+  .js [data-reveal]:not([data-in]) {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  [data-reveal] {
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.2s, box-shadow 0.3s;
+    transition-delay: var(--d, 0ms);
+  }
+  .card {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.2s, box-shadow 0.3s, background-color 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: rgb(20 184 166 / 0.4);
+    box-shadow: 0 16px 40px -16px rgb(20 184 166 / 0.25);
+    transition-delay: 0ms;
+  }
+  .card:hover svg:first-child { transform: scale(1.1) rotate(-4deg); }
+  .card svg { transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+  .btn-primary { background-image: linear-gradient(110deg, transparent 35%, rgb(255 255 255 / 0.28) 50%, transparent 65%); background-size: 250% 100%; background-position: 200% 0; }
+  .btn-primary:hover { animation: shimmer 1.2s linear 1; }
+  .btn svg { transition: transform 0.2s; }
+  .btn:hover svg:last-child { transform: translateX(2px); }
+  details[open] > p { animation: fade-up 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+  .scroll-bar { transform-origin: 0 50%; transform: scaleX(var(--p, 0)); }
+  :target, section[id] { scroll-margin-top: 4.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal]:not([data-in]) { opacity: 1; transform: none; }
+  .card:hover { transform: none; }
+}

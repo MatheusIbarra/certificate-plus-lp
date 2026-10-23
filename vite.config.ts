@@ -1,0 +1,7 @@
+import { defineConfig } from "vite";
+import vinext from "vinext";
+
+export default defineConfig({
+  plugins: [vinext()],
+  server: { port: 3002, strictPort: true },
+});
