@@ -35,7 +35,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="page-container mt-10 border-t border-stone-800/80 pt-6 text-xs text-stone-600">
-        <p>© {new Date().getFullYear()} Certificate Plus. Todos os direitos reservados.</p>
+        <p>© {new Date().getFullYear()} Protege Certificado. Todos os direitos reservados.</p>
       </div>
     </footer>
   );

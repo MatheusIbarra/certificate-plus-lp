@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-30 border-b border-stone-800/80 bg-stone-950/80 backdrop-blur">
       <div className="page-container flex h-16 items-center justify-between gap-4">
-        <a href="/" aria-label="Certificate Plus"><Logo /></a>
+        <a href="/" aria-label="Protege Certificado"><Logo /></a>
         <nav aria-label="Principal" className="hidden items-center gap-1 text-sm lg:flex">
           {NAV.map((l) => (
             <a key={l.href} href={`/${l.href}`} className="rounded-md px-3 py-2 text-stone-400 hover:text-stone-100">{l.label}</a>

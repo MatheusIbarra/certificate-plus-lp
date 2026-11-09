@@ -8,7 +8,7 @@ export default function Logo() {
         <path d="M256 112V368M176 176H336M176 176L144 256H208L176 176ZM336 176L304 256H368L336 176ZM200 368H312" stroke="#090C13" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
       <span className="whitespace-nowrap text-lg font-bold tracking-tight text-stone-50">
-        Certificate<span className="text-teal-300">Plus</span>
+        Protege <span className="text-teal-300">Certificado</span>
       </span>
     </span>
   );

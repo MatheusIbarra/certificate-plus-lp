@@ -15,7 +15,7 @@ export type Guide = {
 export const GUIDES: Guide[] = [
   {
     slug: "certificado-digital-em-nuvem",
-    title: "Certificado digital em nuvem: o que é | Certificate Plus",
+    title: "Certificado digital em nuvem: o que é | Protege Certificado",
     description: "Entenda o que é certificado digital em nuvem, quando faz sentido para escritórios de advocacia e o que avaliar antes de adotar.",
     h1: "Certificado digital em nuvem: o que é, quando usar e o que avaliar",
     intro: "Certificado digital em nuvem é o uso do certificado sem que ele fique instalado no computador ou em um token de quem trabalha. Para escritórios de advocacia, isso muda como a equipe acessa o PJe e como o responsável acompanha quem usou o certificado.",
@@ -66,21 +66,21 @@ export const GUIDES: Guide[] = [
         paragraphs: ["Cada certificado e cada tribunal têm regras próprias. Confirme com a autoridade certificadora que emitiu o seu certificado e com o tribunal as condições de uso que se aplicam à sua organização."],
       },
       {
-        id: "certificate-plus",
-        h2: "Como o Certificate Plus se encaixa",
-        paragraphs: ["O Certificate Plus é um aplicativo para macOS e Windows que abre PJe de TRTs, TJs, TRFs e TREs já autenticado, com controle de acessos pelo dono do certificado, auditoria contínua, print em tempo real e revogação imediata."],
+        id: "protege-certificado",
+        h2: "Como o Protege Certificado se encaixa",
+        paragraphs: ["O Protege Certificado é um aplicativo para macOS e Windows que abre PJe de TRTs, TJs, TRFs e TREs já autenticado, com controle de acessos pelo dono do certificado, auditoria contínua, print em tempo real e revogação imediata."],
       },
     ],
     faq: [
       { q: "Certificado digital em nuvem é seguro?", a: "Depende dos controles da solução. Vale conferir se há acesso por conta e permissão, trilha de atividade, revogação imediata, sessões isoladas e atualizações verificadas, e se quem usa é informado do que é registrado." },
-      { q: "Preciso trocar o meu certificado para usar em nuvem?", a: "Esta página não substitui a orientação da sua autoridade certificadora. Fale com o time do Certificate Plus para saber como o certificado da sua organização é utilizado." },
+      { q: "Preciso trocar o meu certificado para usar em nuvem?", a: "Esta página não substitui a orientação da sua autoridade certificadora. Fale com o time do Protege Certificado para saber como o certificado da sua organização é utilizado." },
       { q: "Posso tirar o certificado do computador dos advogados?", a: "Sim, esse é o objetivo: quem usa o app não recebe o arquivo do certificado nem a senha dele." },
     ],
     related: ["certificado-a1-a3-ou-nuvem", "pje-sem-token"],
   },
   {
     slug: "certificado-a1-a3-ou-nuvem",
-    title: "Certificado A1, A3 ou nuvem: como escolher | Certificate Plus",
+    title: "Certificado A1, A3 ou nuvem: como escolher | Protege Certificado",
     description: "Compare certificado A1 (arquivo), A3 (token ou cartão) e uso em nuvem em mobilidade, controle de acesso e rastreabilidade para advocacia.",
     h1: "Certificado A1, A3 ou em nuvem: qual escolher para o escritório?",
     intro: "A1 e A3 descrevem onde o certificado fica guardado: em arquivo ou em token e cartão. O uso em nuvem é uma terceira forma de acessar o certificado. A escolha afeta mobilidade, controle de quem usa e rastreabilidade.",
@@ -118,14 +118,14 @@ export const GUIDES: Guide[] = [
       },
     ],
     faq: [
-      { q: "O Certificate Plus é um tipo de certificado?", a: "Não. É o aplicativo que dá acesso controlado ao certificado digital da sua organização." },
+      { q: "O Protege Certificado é um tipo de certificado?", a: "Não. É o aplicativo que dá acesso controlado ao certificado digital da sua organização." },
       { q: "Qual é mais seguro: A1, A3 ou nuvem?", a: "Não há resposta única. Segurança depende de quem tem acesso ao certificado, de como o uso é controlado e de haver registro. Compare esses pontos na tabela acima." },
     ],
     related: ["certificado-digital-em-nuvem", "pje-sem-token"],
   },
   {
     slug: "pje-sem-token",
-    title: "PJe sem token: como acessar os tribunais | Certificate Plus",
+    title: "PJe sem token: como acessar os tribunais | Protege Certificado",
     description: "Veja como acessar o PJe de TRTs, TJs, TRFs e TREs sem depender de token no computador e como manter controle de quem usa.",
     h1: "PJe sem token: como acessar os tribunais com certificado digital",
     intro: "Depender de um token para entrar no PJe prende o trabalho a um computador e a uma pessoa por vez. Existe uma forma de acessar os tribunais sem token no computador e ainda saber quem acessou.",
@@ -144,7 +144,7 @@ export const GUIDES: Guide[] = [
         id: "alternativa",
         h2: "Alternativa: acessar por conta, com o certificado em nuvem",
         paragraphs: [
-          "Com o Certificate Plus, a pessoa entra no app com a própria conta, escolhe o certificado liberado para ela e o sistema do tribunal. O tribunal abre dentro do app já autenticado, com login, código de verificação e assinatura integrados.",
+          "Com o Protege Certificado, a pessoa entra no app com a própria conta, escolhe o certificado liberado para ela e o sistema do tribunal. O tribunal abre dentro do app já autenticado, com login, código de verificação e assinatura integrados.",
           "Não há arquivo para copiar nem token para levar entre computadores, e o app funciona em macOS e Windows.",
         ],
       },
@@ -170,7 +170,7 @@ export const GUIDES: Guide[] = [
       },
     ],
     faq: [
-      { q: "Preciso do token para usar o Certificate Plus?", a: "Não. Quem usa o app não precisa ter o certificado nem token no computador." },
+      { q: "Preciso do token para usar o Protege Certificado?", a: "Não. Quem usa o app não precisa ter o certificado nem token no computador." },
       { q: "Funciona em qualquer tribunal?", a: "O catálogo atual tem mais de 180 tribunais PJe, e novos chegam pela plataforma. Confira a lista de sistemas na página inicial." },
     ],
     related: ["certificado-digital-em-nuvem", "certificado-a1-a3-ou-nuvem"],

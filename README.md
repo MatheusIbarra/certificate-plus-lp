@@ -1,4 +1,4 @@
-# Certificate Plus: site
+# Protege Certificado: site
 
 Landing page do aplicativo desktop (`certificate-plus-electron`). Mesmo design do `resolve-hub/tunnel` (Vinext, Tailwind 3, stone + teal, Geist), em pt-BR. O único backend é o formulário de contato (`src/app/actions/leads.ts`), via server action, que chama a `certificate-plus-api`.
 

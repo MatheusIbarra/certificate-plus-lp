@@ -38,7 +38,7 @@ export default function AppWindow() {
           <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
           <span className="h-3 w-3 rounded-full bg-[#28c840]" />
         </div>
-        <span className="flex-1 truncate text-center font-mono text-xs text-stone-500">Certificate Plus</span>
+        <span className="flex-1 truncate text-center font-mono text-xs text-stone-500">Protege Certificado</span>
       </figcaption>
 
       <div aria-hidden className="flex items-center gap-1 border-b border-stone-800 bg-stone-950 px-3 pt-2">

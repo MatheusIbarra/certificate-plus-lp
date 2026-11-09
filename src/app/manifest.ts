@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Certificate Plus",
-    short_name: "Certificate Plus",
+    name: "Protege Certificado",
+    short_name: "Protege Certificado",
     description: "Certificado digital na nuvem para acessar tribunais PJe, com controle de acessos e auditoria.",
     lang: "pt-BR",
     start_url: "/",

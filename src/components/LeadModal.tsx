@@ -88,7 +88,7 @@ export function LeadProvider({ children }: { children: ReactNode }) {
           <div className="flex items-start justify-between gap-4">
             <div>
               <h2 id="lead-modal-title" className="text-xl font-semibold tracking-tight text-stone-50">Fale com o time comercial</h2>
-              <p className="mt-1 text-sm text-stone-400">Deixe seu contato e retornamos para apresentar o Certificate Plus.</p>
+              <p className="mt-1 text-sm text-stone-400">Deixe seu contato e retornamos para apresentar o Protege Certificado.</p>
             </div>
             <button type="button" onClick={close} aria-label="Fechar" className="-mr-2 -mt-2 rounded-md p-2 text-stone-400 hover:text-stone-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400">
               <X className="h-5 w-5" aria-hidden />

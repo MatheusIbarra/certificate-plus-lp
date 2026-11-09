@@ -76,7 +76,7 @@ export default function GuideLayout({ guide }: { guide: Guide }) {
             {s.table && (
               <div className="mt-5 overflow-x-auto rounded-xl border border-stone-800 bg-stone-900/40">
                 <table className="w-full min-w-[40rem] border-collapse text-left text-sm">
-                  <caption className="sr-only">Comparativo entre certificado A1, certificado A3 e Certificate Plus</caption>
+                  <caption className="sr-only">Comparativo entre certificado A1, certificado A3 e Protege Certificado</caption>
                   <thead>
                     <tr className="border-b border-stone-800 bg-stone-900/70">
                       <td className="px-4 py-3" />
@@ -113,7 +113,7 @@ export default function GuideLayout({ guide }: { guide: Guide }) {
         </section>
 
         <section aria-labelledby="cta-t" className="card mt-12 p-6 text-center sm:p-8">
-          <h2 id="cta-t" className="text-xl font-semibold text-stone-50">Conheça o Certificate Plus</h2>
+          <h2 id="cta-t" className="text-xl font-semibold text-stone-50">Conheça o Protege Certificado</h2>
           <p className="mt-2 text-stone-400">Certificado digital em nuvem para PJe, com controle de acessos e auditoria contínua.</p>
           <p className="mt-5 flex flex-wrap justify-center gap-3">
             <a href="/#download" className="btn-primary">Baixar ou solicitar acesso</a>

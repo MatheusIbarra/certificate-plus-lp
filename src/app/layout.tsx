@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono"
 
 const TITLE = PAGE_TITLE;
 const DESCRIPTION = PAGE_DESCRIPTION;
-const OG_IMAGE = { url: "/og-image.png", width: 1200, height: 630, alt: "Certificate Plus: certificado digital em nuvem para tribunais PJe" };
+const OG_IMAGE = { url: "/og-image.png", width: 1200, height: 630, alt: "Protege Certificado: certificado digital em nuvem para tribunais PJe" };
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

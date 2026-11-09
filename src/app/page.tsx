@@ -132,7 +132,7 @@ export default async function Home() {
           <SectionHeader id="compare-title" title={COMPARE.title} subtitle={COMPARE.subtitle} />
           <div data-reveal className="mt-10 overflow-x-auto rounded-xl border border-stone-800 bg-stone-900/40 sm:mt-14">
             <table className="w-full min-w-[40rem] border-collapse text-left text-sm">
-              <caption className="sr-only">Comparativo entre certificado A1, certificado A3 e Certificate Plus</caption>
+              <caption className="sr-only">Comparativo entre certificado A1, certificado A3 e Protege Certificado</caption>
               <thead>
                 <tr className="border-b border-stone-800 bg-stone-900/70">
                   <td className="px-5 py-4" />
@@ -296,7 +296,7 @@ export default async function Home() {
 
       <section id="download" aria-labelledby="download-title" className="border-t border-stone-800/80 py-14 sm:py-20 lg:py-24">
         <div className="page-container max-w-3xl">
-          <SectionHeader id="download-title" title="Baixe o Certificate Plus" subtitle={release ? `Versão atual: ${release.version}. O app se atualiza sozinho depois de instalado.` : "Peça acesso e receba o instalador da sua organização."} />
+          <SectionHeader id="download-title" title="Baixe o Protege Certificado" subtitle={release ? `Versão atual: ${release.version}. O app se atualiza sozinho depois de instalado.` : "Peça acesso e receba o instalador da sua organização."} />
           {release && release.downloads.length > 0 ? (
             <ul data-reveal className="mt-10 space-y-4">
               {release.downloads.map((d) => (
